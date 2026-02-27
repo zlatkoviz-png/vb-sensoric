@@ -41,6 +41,7 @@ export async function fetchStrapi<T>(
 export function getStrapiMedia(url: string | null | undefined): string {
   if (!url) return "/placeholder.png";
   if (url.startsWith("http")) return url;
+  if (url.startsWith("/hikrobot")) return url;
   return `${STRAPI_URL}${url}`;
 }
 

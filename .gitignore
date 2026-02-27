@@ -47,6 +47,10 @@ frontend/node_modules/
 frontend/.next/
 frontend/out/
 
+# Hikrobot static catalog (1500+ products)
+frontend/public/hikrobot/
+frontend/public/hikrobot-datasheets/
+
 # Misc
 *.log
 ssh_out.txt

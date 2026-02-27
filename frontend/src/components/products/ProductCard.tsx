@@ -4,9 +4,11 @@ import type { Product } from "@/lib/types";
 import { getStrapiMedia } from "@/lib/strapi";
 
 export function ProductCard({ product }: { product: Product }) {
-  const imageUrl = product.images?.[0]?.url
+  const strapiImage = product.images?.[0]?.url
     ? getStrapiMedia(product.images[0].url)
     : null;
+  const localImage = product.specs?.imageUrl as string | undefined;
+  const imageUrl = strapiImage || (localImage ? localImage : null);
 
   return (
     <Link

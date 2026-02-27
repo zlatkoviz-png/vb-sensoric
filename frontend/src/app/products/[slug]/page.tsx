@@ -25,8 +25,20 @@ export default async function ProductDetailPage({ params }: Props) {
   const product = res.data[0];
   if (!product) notFound();
 
-  const imageUrl = product.images?.[0]?.url
+  const strapiImage = product.images?.[0]?.url
     ? getStrapiMedia(product.images[0].url)
+    : null;
+  const localImage = product.specs?.imageUrl as string | undefined;
+  const imageUrl = strapiImage || (localImage ? localImage : null);
+  const datasheetUrl = product.specs?.datasheetUrl as string | undefined;
+
+  // Filter internal keys from specs display
+  const displaySpecs = product.specs
+    ? Object.fromEntries(
+        Object.entries(product.specs).filter(
+          ([key]) => !["imageUrl", "datasheetUrl"].includes(key)
+        )
+      )
     : null;
 
   // Related products from same category
@@ -124,7 +136,7 @@ export default async function ProductDetailPage({ params }: Props) {
           )}
 
           {/* Specs table */}
-          {product.specs && Object.keys(product.specs).length > 0 && (
+          {displaySpecs && Object.keys(displaySpecs).length > 0 && (
             <div className="scada-panel overflow-hidden mb-6">
               <div className="px-4 py-3 border-b border-scada-border">
                 <h2 className="text-sm font-semibold uppercase tracking-wider text-accent-blue">
@@ -133,7 +145,7 @@ export default async function ProductDetailPage({ params }: Props) {
               </div>
               <table className="w-full text-sm">
                 <tbody>
-                  {Object.entries(product.specs).map(([key, value], i) => (
+                  {Object.entries(displaySpecs).map(([key, value], i) => (
                     <tr
                       key={key}
                       className={i % 2 === 0 ? "bg-scada-bg/50" : ""}
@@ -149,12 +161,26 @@ export default async function ProductDetailPage({ params }: Props) {
             </div>
           )}
 
-          <Link
-            href={`/contact?product=${product.slug}`}
-            className="btn-primary inline-block text-center w-full sm:w-auto"
-          >
-            Поискай оферта
-          </Link>
+          <div className="flex flex-col sm:flex-row gap-3">
+            <Link
+              href={`/contact?product=${product.slug}`}
+              className="btn-primary inline-block text-center flex-1"
+            >
+              Поискай оферта
+            </Link>
+            {datasheetUrl && (
+              <a
+                href={datasheetUrl}
+                download
+                className="btn-secondary inline-flex items-center justify-center gap-2 text-center flex-1"
+              >
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                </svg>
+                Datasheet PDF
+              </a>
+            )}
+          </div>
         </div>
       </div>
 
