@@ -1,6 +1,7 @@
 import Link from "next/link";
+import type { Manufacturer } from "@/lib/types";
 
-const manufacturers = [
+const fallbackManufacturers = [
   { name: "SICK", slug: "sick" },
   { name: "Datasensing", slug: "datasensing" },
   { name: "BD Sensors", slug: "bd-sensors" },
@@ -9,7 +10,11 @@ const manufacturers = [
   { name: "SinceVision", slug: "sincevision" },
 ];
 
-export function ManufacturersBar() {
+export function ManufacturersBar({ manufacturers }: { manufacturers?: Manufacturer[] }) {
+  const items = manufacturers?.length
+    ? manufacturers.map((m) => ({ name: m.name, slug: m.slug }))
+    : fallbackManufacturers;
+
   return (
     <section className="border-y border-scada-border bg-scada-surface/30 py-8">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -17,7 +22,7 @@ export function ManufacturersBar() {
           Официален дистрибутор на
         </p>
         <div className="flex flex-wrap justify-center items-center gap-8 md:gap-12">
-          {manufacturers.map((m) => (
+          {items.map((m) => (
             <Link
               key={m.slug}
               href={`/products?manufacturer=${m.slug}`}

@@ -1,7 +1,10 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import Link from "next/link";
+import Particles from "@tsparticles/react";
+import { loadSlim } from "@tsparticles/slim";
+import type { Engine } from "@tsparticles/engine";
 
 const stats = [
   { label: "Продукта в каталога", value: 5000, suffix: "+" },
@@ -43,16 +46,84 @@ function AnimatedCounter({ target, suffix }: { target: number; suffix: string })
   );
 }
 
+function useReducedMotion() {
+  const [reduced, setReduced] = useState(false);
+  useEffect(() => {
+    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
+    setReduced(mq.matches);
+    const handler = (e: MediaQueryListEvent) => setReduced(e.matches);
+    mq.addEventListener("change", handler);
+    return () => mq.removeEventListener("change", handler);
+  }, []);
+  return reduced;
+}
+
 export function HeroSection() {
+  const reducedMotion = useReducedMotion();
+  const [particlesReady, setParticlesReady] = useState(false);
+
+  const particlesInit = useCallback(async (engine: Engine) => {
+    await loadSlim(engine);
+    setParticlesReady(true);
+  }, []);
+
   return (
     <section className="relative overflow-hidden">
       {/* Grid background */}
       <div className="absolute inset-0 grid-bg opacity-50" />
 
+      {/* Particle mesh */}
+      {!reducedMotion && (
+        <div className="absolute inset-0 z-0">
+          <Particles
+            id="hero-particles"
+            init={particlesInit}
+            options={{
+              fullScreen: { enable: false },
+              background: { color: { value: "transparent" } },
+              fpsLimit: 30,
+              particles: {
+                color: { value: "#00B4D8" },
+                links: {
+                  color: "#00B4D8",
+                  distance: 150,
+                  enable: true,
+                  opacity: 0.2,
+                  width: 1,
+                },
+                move: {
+                  enable: true,
+                  speed: 0.5,
+                  direction: "none",
+                  outModes: { default: "bounce" },
+                },
+                number: {
+                  value: 50,
+                  density: { enable: true },
+                },
+                opacity: { value: 0.3 },
+                shape: { type: "circle" },
+                size: { value: { min: 1, max: 3 } },
+              },
+              interactivity: {
+                events: {
+                  onHover: { enable: true, mode: "grab" },
+                },
+                modes: {
+                  grab: { distance: 200, links: { opacity: 0.4 } },
+                },
+              },
+              detectRetina: true,
+            }}
+            className="w-full h-full"
+          />
+        </div>
+      )}
+
       {/* Radial glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-accent-blue/5 rounded-full blur-3xl" />
 
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-32">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-32">
         <div className="max-w-3xl">
           {/* Status indicator */}
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-accent-green/30 bg-accent-green/5 mb-8">

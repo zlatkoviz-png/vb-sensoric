@@ -10,8 +10,9 @@ services:
       - "8210:3000"
     environment:
       - NEXT_PUBLIC_STRAPI_URL=http://cms:1337
+      - STRAPI_API_TOKEN=${STRAPI_API_TOKEN:-}
       - NEXT_PUBLIC_MEILISEARCH_URL=http://search:7700
-      - NEXT_PUBLIC_SITE_URL=http://192.168.3.90:8200
+      - NEXT_PUBLIC_SITE_URL=http://192.168.3.90:8210
     volumes:
       - ./frontend/src:/app/src
       - ./frontend/public:/app/public

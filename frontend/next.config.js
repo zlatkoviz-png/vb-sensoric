@@ -11,7 +11,7 @@ const nextConfig = {
       {
         protocol: 'http',
         hostname: '192.168.3.90',
-        port: '8201',
+        port: '8211',
       },
     ],
     formats: ['image/webp', 'image/avif'],

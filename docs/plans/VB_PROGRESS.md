@@ -15,39 +15,43 @@
 - Content types: manufacturer, category, product, case-study, testimonial, blog-post
 - All schemas with proper relations, uid fields, media fields per design doc
 
-### Task 5 (partial): Strapi admin + API token
-- **Admin user created:** `admin@vbsensoric.bg` / `VBadmin2026`
-- **API token created (full-access):** saved to `/tmp/vb_api_token.txt`
-  - Token value: `229867493451854f4f6ac56f060439d685789f30e700413ea98f440f5ad6793f8f30abe59b92a5ca692287d686dd3ad2a613d6cc2b82764a51e704e9c61dd72b0064d78bf9e55c1fbd11b50ac055a20d6fed00e2badad488355350555cfb1e875304018501ffd12083b79f2367a263fbbd346a0441ef4eada86e0450fa7718cb`
+### Task 5: Strapi admin + API token + public permissions + env config
+- Admin user created: `admin@vbsensoric.bg` / `VBadmin2026`
+- API token (full-access) added to `.env` as `STRAPI_API_TOKEN`
+- `STRAPI_API_TOKEN` added to `docker-compose.yml` frontend environment
+- Public role permissions configured (find/findOne for all 6 content types)
+- All 6 API endpoints returning 200 OK publicly
+- `next.config.js` image port fixed: 8201 → 8211
 
----
+### Task 6: Seed script with realistic data
+- Created `cms/scripts/seed.ts`
+- Seeded: 6 manufacturers, 6 categories, 18 products, 3 case studies, 3 testimonials, 3 blog posts
+- Relations verified (products → manufacturer + categories work with populate)
+- Strapi v5 flat response format confirmed (no attributes wrapper)
 
-## In Progress
+### Task 7: Typed Strapi client
+- Created `frontend/src/lib/types.ts` with Strapi v5 flat response types
+- Updated `frontend/src/lib/strapi.ts` with API token auth + typed fetch functions
+- Strapi v5 populate syntax: `populate[0]=manufacturer&populate[1]=categories`
 
-### Task 5 (remaining): Public permissions + env config
-Still needed:
-1. **Configure public role permissions** — enable `find` and `findOne` for all 6 content types on the Public role
-   - The users-permissions roles API endpoint returned data but the public role ID extraction failed
-   - Try: `GET http://192.168.3.90:8211/api/users-permissions/roles` with admin JWT, inspect raw JSON to find public role ID
-   - Then: `PUT http://192.168.3.90:8211/api/users-permissions/roles/{id}` with permissions object
-   - Alternative: Use Strapi admin panel at `http://192.168.3.90:8211/admin` (admin@vbsensoric.bg / VBadmin2026)
-2. **Add API token to .env:** `STRAPI_API_TOKEN=<token value>`
-3. **Add to docker-compose.yml frontend environment:** `STRAPI_API_TOKEN: ${STRAPI_API_TOKEN:-}`
-4. **Commit these changes**
+### Task 8: Home page connected to Strapi
+- `page.tsx` made async, fetches manufacturers + categories from Strapi
+- ManufacturersBar accepts manufacturers as props (fallback to hardcoded)
+- FeaturedProducts accepts categories as props (fallback to hardcoded)
 
----
+### Tasks 9-11: Products, Solutions, News pages
+- **Products page:** Real product grid from Strapi, FilterSidebar (manufacturer + category dropdowns), URL param-based filtering
+- **Product detail page:** `/products/[slug]` — specs table, breadcrumbs, related products, manufacturer badge, category tags, quote CTA
+- **Solutions page:** Case study cards from Strapi with industry badge
+- **Solution detail:** `/solutions/[slug]` — problem/solution/results sections
+- **News page:** Blog post cards with date, category label, excerpt
+- Components: `ProductCard.tsx`, `FilterSidebar.tsx` (client component)
 
-## Pending Tasks (in order)
-
-| # | Task | Description |
-|---|------|-------------|
-| 6 | Seed script | `cms/scripts/seed.ts` — 18 products, 6 manufacturers, 6 categories, 3 case studies, 3 testimonials, 3 blog posts |
-| 7 | Typed Strapi client | `frontend/src/lib/types.ts` + update `frontend/src/lib/strapi.ts` with auth header |
-| 8 | Connect Home page | ManufacturersBar + FeaturedProducts fetch from Strapi |
-| 9 | Products page with filters | ProductCard component, FilterSidebar with manufacturer + category dropdowns |
-| 10 | Product detail page | `/products/[slug]` — image gallery, specs table, related products, quote CTA |
-| 11 | Solutions and News pages | Case study cards + detail, blog post cards from Strapi |
-| 12-15 | Visual effects | tsParticles in HeroSection, GSAP ScrollTrigger, scan-line hover, fix next.config.js image port (8201→8211) |
+### Tasks 12-15: Visual effects
+- **tsParticles** in HeroSection: connected dots mesh, SCADA blue (#00B4D8), 50 particles, grab interactivity, `prefers-reduced-motion` respected
+- **GSAP ScrollTrigger:** `ScrollReveal.tsx` wrapper component, fade-in + translateY animation, wraps ManufacturersBar, FeaturedProducts, WhyUs
+- **Scan-line hover:** CSS animation on ProductCard (`.scan-line-hover` class)
+- **next.config.js:** Image port corrected (8201→8211)
 
 ---
 
@@ -60,13 +64,27 @@ Still needed:
 | DB (PostgreSQL 16) | 5432 (internal) | Healthy |
 | Search (Meilisearch) | 8212 | Running |
 
-### Known Issues
-- `frontend/next.config.js` has wrong Strapi image domain port: `8201` should be `8211`
-- `.env` missing `STRAPI_API_TOKEN` variable
-- `docker-compose.yml` frontend service missing `STRAPI_API_TOKEN` env var
-- Public role permissions not yet configured (API returns data but needs read access)
+### All Routes Verified (200 OK)
+- `/` — Home (particles, scroll animations, Strapi data)
+- `/products` — Product catalog with filters
+- `/products?manufacturer=sick` — Filtered by manufacturer
+- `/products/sick-w16` — Product detail with specs
+- `/solutions` — Case study cards
+- `/solutions/sorting-line-sick` — Case study detail
+- `/news` — Blog posts
 
 ### Credentials
 - Strapi admin: `admin@vbsensoric.bg` / `VBadmin2026`
-- API token in `/tmp/vb_api_token.txt` (also listed above)
+- API token in `.env` as `STRAPI_API_TOKEN`
 - Strapi admin panel: `http://192.168.3.90:8211/admin`
+
+---
+
+## All Planned Tasks Complete
+
+All 15 tasks from the implementation plan are done. Potential next steps:
+- Upload product images via Strapi admin panel
+- Meilisearch integration for product search
+- Contact form submission (email/Telegram)
+- Customer portal (login, order history)
+- SEO optimization (structured data, sitemaps)

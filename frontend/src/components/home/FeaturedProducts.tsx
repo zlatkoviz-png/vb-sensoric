@@ -1,45 +1,25 @@
 import Link from "next/link";
+import type { Category } from "@/lib/types";
 
-const categories = [
-  {
-    title: "Фотоелектрични сензори",
-    description: "Прецизно детектиране на обекти, цветове и разстояния",
-    icon: "⚡",
-    href: "/products?category=photoelectric",
-  },
-  {
-    title: "Индуктивни сензори",
-    description: "Надеждно разпознаване на метални обекти без контакт",
-    icon: "🔧",
-    href: "/products?category=inductive",
-  },
-  {
-    title: "Machine Vision",
-    description: "Индустриални камери и AI-базирани визуални системи",
-    icon: "📷",
-    href: "/products?category=vision",
-  },
-  {
-    title: "Сензори за налягане",
-    description: "Измерване на налягане, ниво и температура",
-    icon: "📊",
-    href: "/products?category=pressure",
-  },
-  {
-    title: "Системи за безопасност",
-    description: "Лазерни скенери, светлинни завеси, аварийни стопове",
-    icon: "🛡️",
-    href: "/products?category=safety",
-  },
-  {
-    title: "3D визуални системи",
-    description: "Роботизирано зрение и AI решения за pick & place",
-    icon: "🤖",
-    href: "/products?category=3d-vision",
-  },
+const fallbackCategories = [
+  { name: "Фотоелектрични сензори", description: "Прецизно детектиране на обекти, цветове и разстояния", icon: "⚡", slug: "photoelectric" },
+  { name: "Индуктивни сензори", description: "Надеждно разпознаване на метални обекти без контакт", icon: "🔧", slug: "inductive" },
+  { name: "Machine Vision", description: "Индустриални камери и AI-базирани визуални системи", icon: "📷", slug: "vision" },
+  { name: "Сензори за налягане", description: "Измерване на налягане, ниво и температура", icon: "📊", slug: "pressure" },
+  { name: "Системи за безопасност", description: "Лазерни скенери, светлинни завеси, аварийни стопове", icon: "🛡️", slug: "safety" },
+  { name: "3D визуални системи", description: "Роботизирано зрение и AI решения за pick & place", icon: "🤖", slug: "3d-vision" },
 ];
 
-export function FeaturedProducts() {
+export function FeaturedProducts({ categories }: { categories?: Category[] }) {
+  const items = categories?.length
+    ? categories.map((c) => ({
+        name: c.name,
+        description: c.description || "",
+        icon: c.icon || "📦",
+        slug: c.slug,
+      }))
+    : fallbackCategories;
+
   return (
     <section className="py-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -53,15 +33,15 @@ export function FeaturedProducts() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {categories.map((cat) => (
+          {items.map((cat) => (
             <Link
-              key={cat.title}
-              href={cat.href}
+              key={cat.slug}
+              href={`/products?category=${cat.slug}`}
               className="group scada-panel p-6 glow-border transition-all duration-300 hover:-translate-y-1"
             >
               <div className="text-3xl mb-4">{cat.icon}</div>
               <h3 className="font-semibold text-lg mb-2 group-hover:text-accent-blue transition-colors">
-                {cat.title}
+                {cat.name}
               </h3>
               <p className="text-sm text-scada-muted">{cat.description}</p>
             </Link>

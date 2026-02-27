@@ -79,6 +79,33 @@
   }
 }
 
+/* Scan-line hover effect */
+.scan-line-hover {
+  position: relative;
+  overflow: hidden;
+}
+.scan-line-hover::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--accent-blue), transparent);
+  transform: translateY(-100%);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.scan-line-hover:hover::after {
+  animation: scan-line 1.5s linear infinite;
+  opacity: 1;
+}
+
+@keyframes scan-line {
+  0% { transform: translateY(-2px); }
+  100% { transform: translateY(calc(var(--card-height, 400px))); }
+}
+
 /* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
