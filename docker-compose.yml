@@ -7,7 +7,7 @@ services:
       dockerfile: Dockerfile
     container_name: vb-frontend
     ports:
-      - "8200:3000"
+      - "8210:3000"
     environment:
       - NEXT_PUBLIC_STRAPI_URL=http://cms:1337
       - NEXT_PUBLIC_MEILISEARCH_URL=http://search:7700
@@ -28,7 +28,7 @@ services:
       dockerfile: Dockerfile
     container_name: vb-cms
     ports:
-      - "8201:1337"
+      - "8211:1337"
     environment:
       - HOST=0.0.0.0
       - PORT=1337
@@ -76,7 +76,7 @@ services:
     image: getmeili/meilisearch:v1.6
     container_name: vb-search
     ports:
-      - "8202:7700"
+      - "8212:7700"
     environment:
       - MEILI_MASTER_KEY=${MEILI_MASTER_KEY:-vb_search_master_2026}
       - MEILI_ENV=development

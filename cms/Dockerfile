@@ -1,20 +1,34 @@
-FROM node:20-alpine
+FROM node:20-alpine AS builder
 
 RUN apk add --no-cache build-base gcc autoconf automake zlib-dev libpng-dev vips-dev
 
+# Create Strapi project in a clean temp directory
+WORKDIR /tmp/strapi-build
+RUN npx create-strapi-app@latest . \
+    --no-run \
+    --dbclient postgres \
+    --dbhost db \
+    --dbport 5432 \
+    --dbname vb_sensoric \
+    --dbusername vb_user \
+    --dbpassword placeholder \
+    --dbssl false \
+    --typescript
+
+# Production image
+FROM node:20-alpine
+
+RUN apk add --no-cache vips-dev
+
 WORKDIR /opt/app
 
-# Copy package files if they exist, otherwise will be created by entrypoint
-COPY package*.json ./
+# Copy built Strapi project
+COPY --from=builder /tmp/strapi-build/ ./
 
-RUN if [ -f package.json ]; then npm install; fi
-
-COPY . .
+# Override database config to use env vars
+RUN mkdir -p config
+COPY config/database.ts ./config/database.ts
 
 EXPOSE 1337
 
-# Entrypoint: initialize Strapi if not already done
-COPY docker-entrypoint.sh /opt/app/docker-entrypoint.sh
-RUN chmod +x /opt/app/docker-entrypoint.sh
-
-CMD ["/opt/app/docker-entrypoint.sh"]
+CMD ["npm", "run", "develop"]
