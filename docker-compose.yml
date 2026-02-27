@@ -1,0 +1,96 @@
+version: '3.8'
+
+services:
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: vb-frontend
+    ports:
+      - "8200:3000"
+    environment:
+      - NEXT_PUBLIC_STRAPI_URL=http://cms:1337
+      - NEXT_PUBLIC_MEILISEARCH_URL=http://search:7700
+      - NEXT_PUBLIC_SITE_URL=http://192.168.3.90:8200
+    volumes:
+      - ./frontend/src:/app/src
+      - ./frontend/public:/app/public
+    depends_on:
+      - cms
+      - search
+    restart: unless-stopped
+    networks:
+      - vb-network
+
+  cms:
+    build:
+      context: ./cms
+      dockerfile: Dockerfile
+    container_name: vb-cms
+    ports:
+      - "8201:1337"
+    environment:
+      - HOST=0.0.0.0
+      - PORT=1337
+      - APP_KEYS=${STRAPI_APP_KEYS:-key1,key2,key3,key4}
+      - API_TOKEN_SALT=${STRAPI_API_TOKEN_SALT:-apisalt123}
+      - ADMIN_JWT_SECRET=${STRAPI_ADMIN_JWT_SECRET:-adminjwt123}
+      - TRANSFER_TOKEN_SALT=${STRAPI_TRANSFER_TOKEN_SALT:-transfer123}
+      - JWT_SECRET=${STRAPI_JWT_SECRET:-jwtstrapi123}
+      - DATABASE_CLIENT=postgres
+      - DATABASE_HOST=db
+      - DATABASE_PORT=5432
+      - DATABASE_NAME=vb_sensoric
+      - DATABASE_USERNAME=vb_user
+      - DATABASE_PASSWORD=${DB_PASSWORD:-vb_secret_2026}
+    volumes:
+      - cms_uploads:/opt/app/public/uploads
+      - ./cms/src:/opt/app/src
+      - ./cms/config:/opt/app/config
+    depends_on:
+      db:
+        condition: service_healthy
+    restart: unless-stopped
+    networks:
+      - vb-network
+
+  db:
+    image: postgres:16-alpine
+    container_name: vb-db
+    environment:
+      - POSTGRES_DB=vb_sensoric
+      - POSTGRES_USER=vb_user
+      - POSTGRES_PASSWORD=${DB_PASSWORD:-vb_secret_2026}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U vb_user -d vb_sensoric"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+    networks:
+      - vb-network
+
+  search:
+    image: getmeili/meilisearch:v1.6
+    container_name: vb-search
+    ports:
+      - "8202:7700"
+    environment:
+      - MEILI_MASTER_KEY=${MEILI_MASTER_KEY:-vb_search_master_2026}
+      - MEILI_ENV=development
+    volumes:
+      - search_data:/meili_data
+    restart: unless-stopped
+    networks:
+      - vb-network
+
+volumes:
+  postgres_data:
+  cms_uploads:
+  search_data:
+
+networks:
+  vb-network:
+    driver: bridge

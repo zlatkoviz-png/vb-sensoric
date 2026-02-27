@@ -1,0 +1,11 @@
+{
+  "name": "vb-sensoric-cms",
+  "private": true,
+  "version": "0.1.0",
+  "description": "VB Sensoric CMS - Strapi",
+  "scripts": {
+    "develop": "strapi develop",
+    "start": "strapi start",
+    "build": "strapi build"
+  }
+}

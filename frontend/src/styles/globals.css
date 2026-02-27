@@ -1,0 +1,90 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --scada-bg: #0A0E1A;
+    --scada-surface: #1A1D23;
+    --scada-border: #2A2D35;
+    --accent-blue: #00B4D8;
+    --accent-green: #00E676;
+    --accent-orange: #FF6D00;
+  }
+
+  body {
+    background-color: var(--scada-bg);
+    background-image:
+      radial-gradient(circle, rgba(0, 180, 216, 0.03) 1px, transparent 1px);
+    background-size: 24px 24px;
+  }
+
+  ::selection {
+    background-color: rgba(0, 180, 216, 0.3);
+    color: #fff;
+  }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: var(--scada-bg);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--scada-border);
+    border-radius: 3px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--accent-blue);
+  }
+}
+
+@layer components {
+  .scada-panel {
+    @apply bg-scada-surface border border-scada-border rounded-lg;
+  }
+
+  .scada-glow {
+    box-shadow: 0 0 15px rgba(0, 180, 216, 0.15),
+                inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  }
+
+  .glow-border {
+    @apply border border-accent-blue/30 hover:border-accent-blue/60;
+    transition: border-color 0.3s, box-shadow 0.3s;
+  }
+
+  .glow-border:hover {
+    box-shadow: 0 0 20px rgba(0, 180, 216, 0.2);
+  }
+
+  .btn-primary {
+    @apply px-6 py-3 bg-accent-blue text-white font-medium rounded-lg
+           hover:bg-accent-blue/90 transition-all duration-300
+           hover:shadow-glow active:scale-[0.98];
+  }
+
+  .btn-secondary {
+    @apply px-6 py-3 border border-accent-blue/40 text-accent-blue
+           rounded-lg hover:bg-accent-blue/10 transition-all duration-300;
+  }
+
+  .grid-bg {
+    background-image:
+      linear-gradient(rgba(0, 180, 216, 0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0, 180, 216, 0.05) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
