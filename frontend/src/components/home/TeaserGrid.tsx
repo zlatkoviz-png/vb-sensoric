@@ -5,19 +5,19 @@ const teasers = [
     title: "Индустриални решения",
     description:
       "Автоматизация за хранителна, фармацевтична и автомобилна индустрия.",
-    image: "/images/teasers/industrial-solutions.svg",
+    image: "/images/teasers/industrial-solutions.jpg",
   },
   {
     title: "Техническа експертиза",
     description:
       "Нашият екип помага с избора и интеграцията на всеки продукт.",
-    image: "/images/teasers/technical-expertise.svg",
+    image: "/images/teasers/technical-expertise.jpg",
   },
   {
     title: "Партньорство",
     description:
       "Дългосрочни отношения с клиенти в цяла България.",
-    image: "/images/teasers/partnership.svg",
+    image: "/images/teasers/partnership.jpg",
   },
 ];
 
