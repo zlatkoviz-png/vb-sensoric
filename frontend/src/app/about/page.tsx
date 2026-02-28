@@ -10,7 +10,7 @@ export default function AboutPage() {
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
       <h1 className="text-3xl font-bold mb-8">За нас</h1>
       <div className="max-w-3xl">
-        <div className="scada-panel p-8 space-y-6 text-scada-muted leading-relaxed">
+        <div className="card p-8 space-y-6 text-slate-600 leading-relaxed">
           <p>
             VB Sensoric е специализиран дистрибутор на индустриални сензори и визуални
             системи за автоматизация на българския пазар.

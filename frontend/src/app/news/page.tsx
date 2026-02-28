@@ -21,7 +21,7 @@ export default async function NewsPage() {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
       <h1 className="text-3xl font-bold mb-4">Новини / Блог</h1>
-      <p className="text-scada-muted mb-8">Последни публикации и новини</p>
+      <p className="text-slate-500 mb-8">Последни публикации и новини</p>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {posts.map((post) => {
@@ -31,8 +31,8 @@ export default async function NewsPage() {
           const date = post.publishedAt || post.createdAt;
 
           return (
-            <article key={post.id} className="scada-panel overflow-hidden glow-border group">
-              <div className="aspect-video bg-scada-bg flex items-center justify-center overflow-hidden">
+            <article key={post.id} className="card overflow-hidden group">
+              <div className="aspect-video bg-slate-50 flex items-center justify-center overflow-hidden">
                 {coverUrl ? (
                   <Image
                     src={coverUrl}
@@ -42,7 +42,7 @@ export default async function NewsPage() {
                     className="object-cover w-full h-full"
                   />
                 ) : (
-                  <div className="text-scada-muted font-mono text-4xl opacity-20">
+                  <div className="text-slate-500 font-mono text-4xl opacity-20">
                     {post.category === "news" ? "📰" : post.category === "technical" ? "🔬" : "📄"}
                   </div>
                 )}
@@ -50,21 +50,21 @@ export default async function NewsPage() {
               <div className="p-6">
                 <div className="flex items-center gap-3 mb-3">
                   {date && (
-                    <time className="text-xs font-mono text-scada-muted">
+                    <time className="text-xs font-mono text-slate-500">
                       {new Date(date).toLocaleDateString("bg-BG")}
                     </time>
                   )}
                   {post.category && (
-                    <span className="text-xs px-2 py-0.5 rounded-full border border-accent-blue/30 text-accent-blue">
+                    <span className="text-xs px-2 py-0.5 rounded-full border border-primary-200 text-primary-600">
                       {categoryLabels[post.category] || post.category}
                     </span>
                   )}
                 </div>
-                <h3 className="font-semibold mb-2 group-hover:text-accent-blue transition-colors">
+                <h3 className="font-semibold mb-2 group-hover:text-primary-600 transition-colors">
                   {post.title}
                 </h3>
                 {post.excerpt && (
-                  <p className="text-sm text-scada-muted line-clamp-3">{post.excerpt}</p>
+                  <p className="text-sm text-slate-500 line-clamp-3">{post.excerpt}</p>
                 )}
               </div>
             </article>
@@ -73,8 +73,8 @@ export default async function NewsPage() {
       </div>
 
       {!posts.length && (
-        <div className="scada-panel p-12 text-center">
-          <p className="text-scada-muted">Все още няма публикувани статии.</p>
+        <div className="card p-12 text-center">
+          <p className="text-slate-500">Все още няма публикувани статии.</p>
         </div>
       )}
     </div>
