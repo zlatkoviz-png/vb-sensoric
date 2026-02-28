@@ -3,110 +3,74 @@
 @tailwind utilities;
 
 @layer base {
-  :root {
-    --scada-bg: #0A0E1A;
-    --scada-surface: #1A1D23;
-    --scada-border: #2A2D35;
-    --accent-blue: #00B4D8;
-    --accent-green: #00E676;
-    --accent-orange: #FF6D00;
-  }
-
   body {
-    background-color: var(--scada-bg);
-    background-image:
-      radial-gradient(circle, rgba(0, 180, 216, 0.03) 1px, transparent 1px);
-    background-size: 24px 24px;
+    @apply bg-white text-slate-900 antialiased;
   }
 
   ::selection {
-    background-color: rgba(0, 180, 216, 0.3);
-    color: #fff;
+    background-color: rgba(13, 148, 136, 0.2);
+    color: #0F172A;
   }
 
-  /* Scrollbar */
   ::-webkit-scrollbar {
     width: 6px;
     height: 6px;
   }
   ::-webkit-scrollbar-track {
-    background: var(--scada-bg);
+    background: #F8FAFC;
   }
   ::-webkit-scrollbar-thumb {
-    background: var(--scada-border);
+    background: #CBD5E1;
     border-radius: 3px;
   }
   ::-webkit-scrollbar-thumb:hover {
-    background: var(--accent-blue);
+    background: #0D9488;
   }
 }
 
 @layer components {
-  .scada-panel {
-    @apply bg-scada-surface border border-scada-border rounded-lg;
-  }
-
-  .scada-glow {
-    box-shadow: 0 0 15px rgba(0, 180, 216, 0.15),
-                inset 0 1px 0 rgba(255, 255, 255, 0.05);
-  }
-
-  .glow-border {
-    @apply border border-accent-blue/30 hover:border-accent-blue/60;
-    transition: border-color 0.3s, box-shadow 0.3s;
-  }
-
-  .glow-border:hover {
-    box-shadow: 0 0 20px rgba(0, 180, 216, 0.2);
-  }
-
   .btn-primary {
-    @apply px-6 py-3 bg-accent-blue text-white font-medium rounded-lg
-           hover:bg-accent-blue/90 transition-all duration-300
-           hover:shadow-glow active:scale-[0.98];
+    @apply px-6 py-3 bg-primary-600 text-white font-semibold rounded-lg
+           hover:bg-primary-700 transition-all duration-200
+           active:scale-[0.98] shadow-sm hover:shadow-md;
   }
 
   .btn-secondary {
-    @apply px-6 py-3 border border-accent-blue/40 text-accent-blue
-           rounded-lg hover:bg-accent-blue/10 transition-all duration-300;
+    @apply px-6 py-3 border border-primary-600 text-primary-600
+           font-semibold rounded-lg hover:bg-primary-50 transition-all duration-200;
   }
 
-  .grid-bg {
-    background-image:
-      linear-gradient(rgba(0, 180, 216, 0.05) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(0, 180, 216, 0.05) 1px, transparent 1px);
-    background-size: 40px 40px;
+  .btn-white {
+    @apply px-6 py-3 border border-white/30 text-white font-semibold
+           rounded-lg hover:bg-white/10 transition-all duration-200;
+  }
+
+  .section-dark {
+    @apply bg-slate-900 text-slate-100;
+  }
+
+  .section-light {
+    @apply bg-white text-slate-900;
+  }
+
+  .section-alt {
+    @apply bg-slate-50 text-slate-900;
+  }
+
+  .section-teal {
+    @apply bg-gradient-to-br from-primary-600 to-primary-700 text-white;
+  }
+
+  .card {
+    @apply bg-white border border-slate-200 rounded-xl shadow-card
+           hover:shadow-card-hover transition-all duration-300;
+  }
+
+  .card-dark {
+    @apply bg-slate-800 border border-slate-700 rounded-xl;
   }
 }
 
-/* Scan-line hover effect */
-.scan-line-hover {
-  position: relative;
-  overflow: hidden;
-}
-.scan-line-hover::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 2px;
-  background: linear-gradient(90deg, transparent, var(--accent-blue), transparent);
-  transform: translateY(-100%);
-  opacity: 0;
-  transition: opacity 0.3s;
-}
-.scan-line-hover:hover::after {
-  animation: scan-line 1.5s linear infinite;
-  opacity: 1;
-}
-
-@keyframes scan-line {
-  0% { transform: translateY(-2px); }
-  100% { transform: translateY(calc(var(--card-height, 400px))); }
-}
-
-/* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.01ms !important;
