@@ -55,8 +55,8 @@ export default async function ProductDetailPage({ params }: Props) {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
       {/* Breadcrumb */}
-      <nav className="flex items-center gap-2 text-sm text-scada-muted mb-8">
-        <Link href="/products" className="hover:text-accent-blue transition-colors">
+      <nav className="flex items-center gap-2 text-sm text-slate-500 mb-8">
+        <Link href="/products" className="hover:text-primary-600 transition-colors">
           Продукти
         </Link>
         <span>/</span>
@@ -64,19 +64,19 @@ export default async function ProductDetailPage({ params }: Props) {
           <>
             <Link
               href={`/products?manufacturer=${product.manufacturer.slug}`}
-              className="hover:text-accent-blue transition-colors"
+              className="hover:text-primary-600 transition-colors"
             >
               {product.manufacturer.name}
             </Link>
             <span>/</span>
           </>
         )}
-        <span className="text-white">{product.name}</span>
+        <span className="text-slate-900">{product.name}</span>
       </nav>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
         {/* Image */}
-        <div className="scada-panel p-8 flex items-center justify-center aspect-square">
+        <div className="card p-8 flex items-center justify-center aspect-square">
           {imageUrl ? (
             <Image
               src={imageUrl}
@@ -86,7 +86,7 @@ export default async function ProductDetailPage({ params }: Props) {
               className="object-contain max-h-full"
             />
           ) : (
-            <div className="text-scada-muted font-mono text-sm flex flex-col items-center gap-3">
+            <div className="text-slate-500 font-mono text-sm flex flex-col items-center gap-3">
               <svg className="w-16 h-16 opacity-20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
               </svg>
@@ -97,26 +97,26 @@ export default async function ProductDetailPage({ params }: Props) {
 
         {/* Details */}
         <div>
-          <div className="font-mono text-sm text-accent-blue mb-2">{product.sku}</div>
+          <div className="font-mono text-sm text-primary-600 mb-2">{product.sku}</div>
           <h1 className="text-3xl font-bold mb-2">{product.name}</h1>
 
           {product.manufacturer && (
             <Link
               href={`/products?manufacturer=${product.manufacturer.slug}`}
-              className="inline-flex items-center gap-2 text-sm text-scada-muted hover:text-accent-blue transition-colors mb-4"
+              className="inline-flex items-center gap-2 text-sm text-slate-500 hover:text-primary-600 transition-colors mb-4"
             >
               {product.manufacturer.name} &middot; {product.manufacturer.country}
             </Link>
           )}
 
           {product.shortDescription && (
-            <p className="text-scada-muted mb-6">{product.shortDescription}</p>
+            <p className="text-slate-500 mb-6">{product.shortDescription}</p>
           )}
 
           {product.priceRange && (
-            <div className="scada-panel p-4 mb-6">
-              <span className="text-xs text-scada-muted uppercase tracking-wider">Цена</span>
-              <div className="font-mono text-lg text-accent-green mt-1">{product.priceRange}</div>
+            <div className="card p-4 mb-6">
+              <span className="text-xs text-slate-500 uppercase tracking-wider">Цена</span>
+              <div className="font-mono text-lg text-emerald-600 mt-1">{product.priceRange}</div>
             </div>
           )}
 
@@ -127,7 +127,7 @@ export default async function ProductDetailPage({ params }: Props) {
                 <Link
                   key={cat.id}
                   href={`/products?category=${cat.slug}`}
-                  className="px-3 py-1 text-xs rounded-full border border-accent-blue/30 text-accent-blue hover:bg-accent-blue/10 transition-colors"
+                  className="px-3 py-1 text-xs rounded-full border border-primary-200 text-primary-600 hover:bg-primary-50 transition-colors"
                 >
                   {cat.icon} {cat.name}
                 </Link>
@@ -137,9 +137,9 @@ export default async function ProductDetailPage({ params }: Props) {
 
           {/* Specs table */}
           {displaySpecs && Object.keys(displaySpecs).length > 0 && (
-            <div className="scada-panel overflow-hidden mb-6">
-              <div className="px-4 py-3 border-b border-scada-border">
-                <h2 className="text-sm font-semibold uppercase tracking-wider text-accent-blue">
+            <div className="card overflow-hidden mb-6">
+              <div className="px-4 py-3 border-b border-slate-200">
+                <h2 className="text-sm font-semibold uppercase tracking-wider text-primary-600">
                   Технически характеристики
                 </h2>
               </div>
@@ -148,9 +148,9 @@ export default async function ProductDetailPage({ params }: Props) {
                   {Object.entries(displaySpecs).map(([key, value], i) => (
                     <tr
                       key={key}
-                      className={i % 2 === 0 ? "bg-scada-bg/50" : ""}
+                      className={i % 2 === 0 ? "bg-slate-50" : ""}
                     >
-                      <td className="px-4 py-2.5 font-mono text-scada-muted capitalize w-1/3">
+                      <td className="px-4 py-2.5 font-mono text-slate-500 capitalize w-1/3">
                         {key}
                       </td>
                       <td className="px-4 py-2.5 font-mono">{value}</td>
@@ -186,9 +186,9 @@ export default async function ProductDetailPage({ params }: Props) {
 
       {/* Description */}
       {product.description && (
-        <div className="mt-12 scada-panel p-8">
+        <div className="mt-12 card p-8">
           <h2 className="text-xl font-bold mb-4">Описание</h2>
-          <div className="prose prose-invert max-w-none text-scada-muted">
+          <div className="prose max-w-none text-slate-500">
             {product.description}
           </div>
         </div>
@@ -203,14 +203,14 @@ export default async function ProductDetailPage({ params }: Props) {
               <Link
                 key={p.id}
                 href={`/products/${p.slug}`}
-                className="scada-panel p-4 glow-border group"
+                className="card p-4 group"
               >
-                <div className="font-mono text-xs text-accent-blue mb-1">{p.sku}</div>
-                <h3 className="font-semibold group-hover:text-accent-blue transition-colors">
+                <div className="font-mono text-xs text-primary-600 mb-1">{p.sku}</div>
+                <h3 className="font-semibold group-hover:text-primary-600 transition-colors">
                   {p.name}
                 </h3>
                 {p.shortDescription && (
-                  <p className="text-xs text-scada-muted mt-1 line-clamp-2">{p.shortDescription}</p>
+                  <p className="text-xs text-slate-500 mt-1 line-clamp-2">{p.shortDescription}</p>
                 )}
               </Link>
             ))}
