@@ -45,7 +45,7 @@ function Pagination({ page, pageCount, searchParams }: {
       {page > 1 && (
         <Link
           href={buildUrl(page - 1)}
-          className="px-3 py-2 text-sm scada-panel hover:text-accent-blue transition-colors"
+          className="px-3 py-2 text-sm card hover:text-primary-600 transition-colors"
         >
           &laquo;
         </Link>
@@ -56,8 +56,8 @@ function Pagination({ page, pageCount, searchParams }: {
           href={buildUrl(p)}
           className={`px-3 py-2 text-sm ${
             p === page
-              ? "bg-accent-blue/20 text-accent-blue border border-accent-blue/30"
-              : "scada-panel hover:text-accent-blue"
+              ? "bg-primary-50 text-primary-600 border border-primary-200"
+              : "card hover:text-primary-600"
           } transition-colors rounded`}
         >
           {p}
@@ -66,7 +66,7 @@ function Pagination({ page, pageCount, searchParams }: {
       {page < pageCount && (
         <Link
           href={buildUrl(page + 1)}
-          className="px-3 py-2 text-sm scada-panel hover:text-accent-blue transition-colors"
+          className="px-3 py-2 text-sm card hover:text-primary-600 transition-colors"
         >
           &raquo;
         </Link>
@@ -97,8 +97,8 @@ async function ProductGrid({ searchParams }: {
 
   if (!products.length) {
     return (
-      <div className="scada-panel p-12 text-center">
-        <p className="text-scada-muted">Няма намерени продукти с избраните филтри.</p>
+      <div className="card p-12 text-center">
+        <p className="text-slate-500">Няма намерени продукти с избраните филтри.</p>
       </div>
     );
   }
@@ -111,7 +111,7 @@ async function ProductGrid({ searchParams }: {
   return (
     <>
       <div className="flex items-center justify-between mb-4">
-        <p className="text-sm text-scada-muted font-mono">
+        <p className="text-sm text-slate-500 font-mono">
           {total} продукт{total === 1 ? "" : "а"} {pageCount > 1 && `· стр. ${page}/${pageCount}`}
         </p>
       </div>
@@ -135,7 +135,7 @@ export default async function ProductsPage({ searchParams }: Props) {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
       <h1 className="text-3xl font-bold mb-2">Продуктов каталог</h1>
-      <p className="text-scada-muted mb-8">
+      <p className="text-slate-500 mb-8">
         Пълна гама индустриални сензори и визуални системи
       </p>
 
