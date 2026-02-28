@@ -31,12 +31,12 @@ export function FilterSidebar({ manufacturers, categories }: FilterSidebarProps)
   }
 
   return (
-    <div className="scada-panel p-4 sticky top-20">
+    <div className="card p-4 sticky top-20">
       <div className="flex items-center justify-between mb-4">
-        <h2 className="font-semibold text-sm uppercase tracking-wider text-accent-blue">
+        <h2 className="font-semibold text-sm uppercase tracking-wider text-slate-900">
           Филтри
           {activeCount > 0 && (
-            <span className="ml-2 px-1.5 py-0.5 rounded-full bg-accent-blue/20 text-accent-blue text-xs">
+            <span className="ml-2 px-1.5 py-0.5 rounded-full bg-primary-50 text-primary-600 text-xs">
               {activeCount}
             </span>
           )}
@@ -44,7 +44,7 @@ export function FilterSidebar({ manufacturers, categories }: FilterSidebarProps)
         {activeCount > 0 && (
           <button
             onClick={clearFilters}
-            className="text-xs text-scada-muted hover:text-accent-blue transition-colors"
+            className="text-xs text-slate-400 hover:text-primary-600 transition-colors"
           >
             Изчисти
           </button>
@@ -53,13 +53,13 @@ export function FilterSidebar({ manufacturers, categories }: FilterSidebarProps)
 
       <div className="space-y-4">
         <div>
-          <label className="block text-xs text-scada-muted mb-2 uppercase tracking-wider">
+          <label className="block text-xs text-slate-500 mb-2 uppercase tracking-wider">
             Производител
           </label>
           <select
             value={currentMfg}
             onChange={(e) => updateFilter("manufacturer", e.target.value)}
-            className="w-full bg-scada-bg border border-scada-border rounded-lg px-3 py-2 text-sm text-white focus:border-accent-blue focus:outline-none"
+            className="w-full bg-slate-50 border border-slate-200 rounded-lg px-3 py-2 text-sm text-slate-900 focus:border-primary-500 focus:ring-1 focus:ring-primary-500 focus:outline-none"
           >
             <option value="">Всички</option>
             {manufacturers.map((m) => (
@@ -71,13 +71,13 @@ export function FilterSidebar({ manufacturers, categories }: FilterSidebarProps)
         </div>
 
         <div>
-          <label className="block text-xs text-scada-muted mb-2 uppercase tracking-wider">
+          <label className="block text-xs text-slate-500 mb-2 uppercase tracking-wider">
             Категория
           </label>
           <select
             value={currentCat}
             onChange={(e) => updateFilter("category", e.target.value)}
-            className="w-full bg-scada-bg border border-scada-border rounded-lg px-3 py-2 text-sm text-white focus:border-accent-blue focus:outline-none"
+            className="w-full bg-slate-50 border border-slate-200 rounded-lg px-3 py-2 text-sm text-slate-900 focus:border-primary-500 focus:ring-1 focus:ring-primary-500 focus:outline-none"
           >
             <option value="">Всички</option>
             {categories.map((c) => (
