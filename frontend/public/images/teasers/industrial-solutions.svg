@@ -1,0 +1,152 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" fill="none">
+  <!-- Background -->
+  <rect width="800" height="450" fill="#1E293B"/>
+
+  <!-- Factory floor grid -->
+  <g opacity="0.06" stroke="#0D9488">
+    <line x1="0" y1="350" x2="800" y2="350" stroke-width="1"/>
+    <line x1="0" y1="300" x2="800" y2="300" stroke-width="0.5"/>
+    <line x1="100" y1="200" x2="100" y2="450" stroke-width="0.5"/>
+    <line x1="250" y1="200" x2="250" y2="450" stroke-width="0.5"/>
+    <line x1="400" y1="150" x2="400" y2="450" stroke-width="0.5"/>
+    <line x1="550" y1="200" x2="550" y2="450" stroke-width="0.5"/>
+    <line x1="700" y1="200" x2="700" y2="450" stroke-width="0.5"/>
+  </g>
+
+  <!-- Ambient glow -->
+  <ellipse cx="400" cy="250" rx="350" ry="200" fill="#0D9488" opacity="0.04"/>
+
+  <!-- Conveyor belt -->
+  <rect x="80" y="320" width="640" height="12" rx="2" fill="#334155"/>
+  <rect x="80" y="332" width="640" height="4" fill="#1E293B"/>
+  <g fill="#475569">
+    <rect x="120" y="322" width="30" height="8" rx="1"/>
+    <rect x="200" y="322" width="30" height="8" rx="1"/>
+    <rect x="280" y="322" width="30" height="8" rx="1"/>
+    <rect x="360" y="322" width="30" height="8" rx="1"/>
+    <rect x="440" y="322" width="30" height="8" rx="1"/>
+    <rect x="520" y="322" width="30" height="8" rx="1"/>
+    <rect x="600" y="322" width="30" height="8" rx="1"/>
+  </g>
+  <!-- Conveyor legs -->
+  <rect x="140" y="336" width="6" height="60" fill="#334155"/>
+  <rect x="400" y="336" width="6" height="60" fill="#334155"/>
+  <rect x="660" y="336" width="6" height="60" fill="#334155"/>
+
+  <!-- Products on conveyor -->
+  <rect x="150" y="300" width="22" height="20" rx="2" fill="#475569" stroke="#0D9488" stroke-width="0.5"/>
+  <rect x="310" y="298" width="24" height="22" rx="2" fill="#475569" stroke="#0D9488" stroke-width="0.5"/>
+  <rect x="470" y="300" width="22" height="20" rx="2" fill="#475569" stroke="#0D9488" stroke-width="0.5"/>
+
+  <!-- Sensor on conveyor (SICK-style) -->
+  <rect x="345" y="270" width="16" height="28" rx="3" fill="#0D9488"/>
+  <rect x="349" y="275" width="8" height="4" rx="1" fill="#5EEAD4"/>
+  <line x1="353" y1="298" x2="353" y2="310" stroke="#0D9488" stroke-width="1" stroke-dasharray="2 2" opacity="0.6"/>
+  <!-- Sensor beam -->
+  <line x1="353" y1="284" x2="310" y2="310" stroke="#5EEAD4" stroke-width="0.8" opacity="0.3"/>
+  <line x1="353" y1="284" x2="396" y2="310" stroke="#5EEAD4" stroke-width="0.8" opacity="0.3"/>
+
+  <!-- Machine/Robot arm structure -->
+  <rect x="560" y="180" width="20" height="140" rx="3" fill="#334155"/>
+  <rect x="540" y="175" width="60" height="15" rx="3" fill="#475569"/>
+  <rect x="530" y="220" width="80" height="8" rx="2" fill="#334155"/>
+  <circle cx="570" cy="224" r="5" fill="#475569" stroke="#0D9488" stroke-width="1"/>
+  <!-- Robot joint indicator -->
+  <circle cx="570" cy="224" r="2" fill="#0D9488" opacity="0.8"/>
+
+  <!-- Control panel -->
+  <rect x="640" y="220" width="70" height="100" rx="4" fill="#334155" stroke="#475569" stroke-width="1"/>
+  <rect x="650" y="230" width="50" height="30" rx="2" fill="#1E293B"/>
+  <!-- Screen content -->
+  <rect x="654" y="234" width="42" height="3" rx="1" fill="#0D9488" opacity="0.5"/>
+  <rect x="654" y="240" width="30" height="3" rx="1" fill="#0D9488" opacity="0.3"/>
+  <rect x="654" y="246" width="36" height="3" rx="1" fill="#0D9488" opacity="0.4"/>
+  <rect x="654" y="252" width="20" height="3" rx="1" fill="#5EEAD4" opacity="0.6"/>
+  <!-- Buttons -->
+  <circle cx="660" cy="280" r="4" fill="#0D9488"/>
+  <circle cx="675" cy="280" r="4" fill="#475569"/>
+  <circle cx="690" cy="280" r="4" fill="#475569"/>
+  <!-- Status LED -->
+  <circle cx="660" cy="300" r="3" fill="#10B981"/>
+
+  <!-- Person 1 - Engineer with tablet (foreground, left) -->
+  <g transform="translate(180, 170)">
+    <!-- Body -->
+    <rect x="0" y="50" width="40" height="70" rx="4" fill="#0F766E"/>
+    <!-- Hi-vis vest stripes -->
+    <rect x="0" y="60" width="40" height="3" rx="1" fill="#5EEAD4" opacity="0.4"/>
+    <rect x="0" y="80" width="40" height="3" rx="1" fill="#5EEAD4" opacity="0.4"/>
+    <!-- Head -->
+    <circle cx="20" cy="35" r="16" fill="#D4A574"/>
+    <!-- Hard hat -->
+    <ellipse cx="20" cy="24" rx="18" ry="10" fill="#F59E0B"/>
+    <rect x="2" y="24" width="36" height="4" rx="1" fill="#D97706"/>
+    <!-- Face features -->
+    <circle cx="14" cy="35" r="1.5" fill="#1E293B"/>
+    <circle cx="26" cy="35" r="1.5" fill="#1E293B"/>
+    <path d="M15 42 Q20 46 25 42" stroke="#1E293B" stroke-width="1" fill="none"/>
+    <!-- Arms -->
+    <rect x="-8" y="55" width="10" height="40" rx="4" fill="#0F766E"/>
+    <rect x="38" y="55" width="10" height="40" rx="4" fill="#0F766E"/>
+    <!-- Tablet in hands -->
+    <rect x="5" y="95" width="30" height="20" rx="2" fill="#334155" stroke="#475569" stroke-width="1"/>
+    <rect x="8" y="98" width="24" height="14" rx="1" fill="#1E293B"/>
+    <rect x="10" y="100" width="10" height="2" fill="#0D9488" opacity="0.6"/>
+    <rect x="10" y="104" width="16" height="2" fill="#0D9488" opacity="0.4"/>
+    <rect x="10" y="108" width="8" height="2" fill="#5EEAD4" opacity="0.5"/>
+    <!-- Legs -->
+    <rect x="5" y="120" width="12" height="50" rx="3" fill="#334155"/>
+    <rect x="23" y="120" width="12" height="50" rx="3" fill="#334155"/>
+    <!-- Boots -->
+    <rect x="3" y="165" width="16" height="8" rx="3" fill="#1E293B"/>
+    <rect x="21" y="165" width="16" height="8" rx="3" fill="#1E293B"/>
+  </g>
+
+  <!-- Person 2 - Operator at panel (right) -->
+  <g transform="translate(630, 130)">
+    <!-- Body -->
+    <rect x="0" y="50" width="36" height="65" rx="4" fill="#1E3A5F"/>
+    <!-- Head -->
+    <circle cx="18" cy="35" r="14" fill="#C4956A"/>
+    <!-- Hair -->
+    <path d="M4 30 Q18 10 32 30" fill="#4A3728"/>
+    <!-- Face features -->
+    <circle cx="12" cy="35" r="1.5" fill="#1E293B"/>
+    <circle cx="24" cy="35" r="1.5" fill="#1E293B"/>
+    <!-- Arm reaching to panel -->
+    <rect x="-12" y="55" width="10" height="35" rx="4" fill="#1E3A5F" transform="rotate(-15, -7, 55)"/>
+    <rect x="36" y="55" width="10" height="35" rx="4" fill="#1E3A5F"/>
+    <!-- Legs -->
+    <rect x="4" y="115" width="11" height="45" rx="3" fill="#334155"/>
+    <rect x="21" y="115" width="11" height="45" rx="3" fill="#334155"/>
+    <!-- Shoes -->
+    <rect x="2" y="155" width="15" height="7" rx="3" fill="#1E293B"/>
+    <rect x="19" y="155" width="15" height="7" rx="3" fill="#1E293B"/>
+  </g>
+
+  <!-- Overhead lights -->
+  <g opacity="0.15">
+    <rect x="150" y="0" width="4" height="100" fill="#CBD5E1"/>
+    <ellipse cx="152" cy="105" rx="25" ry="8" fill="#FDE68A"/>
+    <rect x="400" y="0" width="4" height="80" fill="#CBD5E1"/>
+    <ellipse cx="402" cy="85" rx="25" ry="8" fill="#FDE68A"/>
+    <rect x="650" y="0" width="4" height="100" fill="#CBD5E1"/>
+    <ellipse cx="652" cy="105" rx="25" ry="8" fill="#FDE68A"/>
+  </g>
+
+  <!-- Safety markings on floor -->
+  <g opacity="0.1">
+    <rect x="80" y="390" width="640" height="4" fill="#F59E0B"/>
+    <rect x="80" y="400" width="30" height="4" fill="#F59E0B"/>
+    <rect x="140" y="400" width="30" height="4" fill="#F59E0B"/>
+    <rect x="200" y="400" width="30" height="4" fill="#F59E0B"/>
+    <rect x="260" y="400" width="30" height="4" fill="#F59E0B"/>
+    <rect x="320" y="400" width="30" height="4" fill="#F59E0B"/>
+    <rect x="380" y="400" width="30" height="4" fill="#F59E0B"/>
+    <rect x="440" y="400" width="30" height="4" fill="#F59E0B"/>
+    <rect x="500" y="400" width="30" height="4" fill="#F59E0B"/>
+    <rect x="560" y="400" width="30" height="4" fill="#F59E0B"/>
+    <rect x="620" y="400" width="30" height="4" fill="#F59E0B"/>
+    <rect x="680" y="400" width="30" height="4" fill="#F59E0B"/>
+  </g>
+</svg>

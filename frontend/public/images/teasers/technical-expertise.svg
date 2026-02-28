@@ -1,0 +1,164 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" fill="none">
+  <!-- Background -->
+  <rect width="800" height="450" fill="#0F766E"/>
+
+  <!-- Subtle grid -->
+  <g opacity="0.05" stroke="white">
+    <line x1="0" y1="50" x2="800" y2="50" stroke-width="0.5"/>
+    <line x1="0" y1="100" x2="800" y2="100" stroke-width="0.5"/>
+    <line x1="0" y1="150" x2="800" y2="150" stroke-width="0.5"/>
+    <line x1="0" y1="200" x2="800" y2="200" stroke-width="0.5"/>
+    <line x1="0" y1="250" x2="800" y2="250" stroke-width="0.5"/>
+    <line x1="0" y1="300" x2="800" y2="300" stroke-width="0.5"/>
+    <line x1="0" y1="350" x2="800" y2="350" stroke-width="0.5"/>
+    <line x1="0" y1="400" x2="800" y2="400" stroke-width="0.5"/>
+    <line x1="100" y1="0" x2="100" y2="450" stroke-width="0.5"/>
+    <line x1="200" y1="0" x2="200" y2="450" stroke-width="0.5"/>
+    <line x1="300" y1="0" x2="300" y2="450" stroke-width="0.5"/>
+    <line x1="400" y1="0" x2="400" y2="450" stroke-width="0.5"/>
+    <line x1="500" y1="0" x2="500" y2="450" stroke-width="0.5"/>
+    <line x1="600" y1="0" x2="600" y2="450" stroke-width="0.5"/>
+    <line x1="700" y1="0" x2="700" y2="450" stroke-width="0.5"/>
+  </g>
+
+  <!-- Ambient glow -->
+  <ellipse cx="350" cy="280" rx="300" ry="180" fill="#5EEAD4" opacity="0.05"/>
+
+  <!-- Desk -->
+  <rect x="120" y="300" width="450" height="12" rx="2" fill="#115E59"/>
+  <!-- Desk legs -->
+  <rect x="140" y="312" width="8" height="80" fill="#115E59"/>
+  <rect x="545" y="312" width="8" height="80" fill="#115E59"/>
+  <!-- Desk shelf -->
+  <rect x="140" y="360" width="413" height="6" rx="1" fill="#134E4A"/>
+
+  <!-- Laptop -->
+  <g transform="translate(250, 230)">
+    <!-- Screen -->
+    <rect x="0" y="0" width="120" height="70" rx="3" fill="#1E293B" stroke="#334155" stroke-width="1"/>
+    <!-- Screen content - waveform/sensor data -->
+    <rect x="8" y="8" width="104" height="54" rx="1" fill="#0F172A"/>
+    <!-- Signal waveform -->
+    <polyline points="14,45 24,35 34,40 44,20 54,30 64,15 74,25 84,22 94,35 104,30" stroke="#5EEAD4" stroke-width="1.5" fill="none"/>
+    <!-- Data readouts -->
+    <rect x="14" y="12" width="30" height="3" rx="1" fill="#0D9488" opacity="0.5"/>
+    <rect x="14" y="18" width="20" height="3" rx="1" fill="#0D9488" opacity="0.3"/>
+    <rect x="80" y="12" width="26" height="8" rx="1" fill="#0D9488" opacity="0.2"/>
+    <text x="83" y="19" font-size="6" fill="#5EEAD4" font-family="monospace" opacity="0.7">OK</text>
+    <!-- Grid lines on screen -->
+    <line x1="14" y1="30" x2="104" y2="30" stroke="#334155" stroke-width="0.3"/>
+    <line x1="14" y1="45" x2="104" y2="45" stroke="#334155" stroke-width="0.3"/>
+    <line x1="54" y1="8" x2="54" y2="62" stroke="#334155" stroke-width="0.3"/>
+    <!-- Keyboard base -->
+    <rect x="5" y="70" width="110" height="6" rx="1" fill="#334155"/>
+  </g>
+
+  <!-- Sensor device on desk (being configured) -->
+  <g transform="translate(430, 260)">
+    <rect x="0" y="0" width="50" height="35" rx="4" fill="#334155" stroke="#475569" stroke-width="1"/>
+    <rect x="5" y="5" width="18" height="12" rx="2" fill="#0D9488"/>
+    <circle cx="14" cy="11" r="4" fill="#5EEAD4" opacity="0.6"/>
+    <!-- Sensor lens -->
+    <circle cx="14" cy="11" r="2" fill="#CCFBF1"/>
+    <!-- Cable -->
+    <path d="M25 35 Q25 50 40 55 Q55 60 60 75" stroke="#475569" stroke-width="2" fill="none"/>
+    <!-- Status LEDs -->
+    <circle cx="35" cy="10" r="2" fill="#10B981"/>
+    <circle cx="42" cy="10" r="2" fill="#475569"/>
+    <!-- Label -->
+    <rect x="28" y="18" width="16" height="6" rx="1" fill="#1E293B"/>
+    <rect x="30" y="20" width="12" height="2" rx="0.5" fill="#0D9488" opacity="0.3"/>
+  </g>
+
+  <!-- Coffee mug -->
+  <g transform="translate(180, 270)">
+    <rect x="0" y="5" width="20" height="24" rx="3" fill="#475569"/>
+    <path d="M20 10 Q28 10 28 17 Q28 24 20 24" stroke="#475569" stroke-width="2" fill="none"/>
+    <!-- Steam -->
+    <path d="M6 0 Q8 -8 6 -12" stroke="#94A3B8" stroke-width="0.8" fill="none" opacity="0.3"/>
+    <path d="M12 2 Q14 -6 12 -10" stroke="#94A3B8" stroke-width="0.8" fill="none" opacity="0.3"/>
+  </g>
+
+  <!-- Multimeter/tool -->
+  <g transform="translate(510, 275)">
+    <rect x="0" y="0" width="24" height="35" rx="3" fill="#F59E0B"/>
+    <rect x="3" y="4" width="18" height="12" rx="1" fill="#1E293B"/>
+    <text x="5" y="13" font-size="7" fill="#5EEAD4" font-family="monospace" opacity="0.8">24V</text>
+    <circle cx="12" cy="24" r="4" fill="#1E293B"/>
+    <!-- Probes -->
+    <line x1="6" y1="35" x2="0" y2="55" stroke="#EF4444" stroke-width="1.5"/>
+    <line x1="18" y1="35" x2="24" y2="55" stroke="#1E293B" stroke-width="1.5"/>
+  </g>
+
+  <!-- Person - Engineer sitting at desk -->
+  <g transform="translate(280, 120)">
+    <!-- Chair back -->
+    <rect x="-15" y="100" width="70" height="80" rx="6" fill="#1E293B"/>
+    <!-- Body (sitting) -->
+    <rect x="0" y="65" width="42" height="55" rx="4" fill="#1E3A5F"/>
+    <!-- Collar/polo detail -->
+    <path d="M10 65 L21 72 L32 65" stroke="#2563EB" stroke-width="1.5" fill="none"/>
+    <!-- Head -->
+    <circle cx="21" cy="48" r="18" fill="#D4A574"/>
+    <!-- Hair -->
+    <path d="M3 42 Q10 22 21 20 Q32 22 39 42" fill="#2C1810"/>
+    <path d="M3 42 Q3 35 8 32" fill="#2C1810"/>
+    <path d="M39 42 Q39 35 34 32" fill="#2C1810"/>
+    <!-- Glasses -->
+    <rect x="8" y="44" width="10" height="8" rx="2" fill="none" stroke="#94A3B8" stroke-width="1"/>
+    <rect x="24" y="44" width="10" height="8" rx="2" fill="none" stroke="#94A3B8" stroke-width="1"/>
+    <line x1="18" y1="48" x2="24" y2="48" stroke="#94A3B8" stroke-width="0.8"/>
+    <!-- Eyes behind glasses -->
+    <circle cx="13" cy="48" r="1.5" fill="#1E293B"/>
+    <circle cx="29" cy="48" r="1.5" fill="#1E293B"/>
+    <!-- Mouth -->
+    <path d="M16 56 Q21 59 26 56" stroke="#1E293B" stroke-width="0.8" fill="none"/>
+    <!-- Left arm (on keyboard) -->
+    <rect x="-12" y="72" width="14" height="35" rx="4" fill="#1E3A5F"/>
+    <!-- Hand -->
+    <circle cx="-5" cy="108" r="6" fill="#D4A574"/>
+    <!-- Right arm (on sensor) -->
+    <rect x="40" y="72" width="14" height="38" rx="4" fill="#1E3A5F"/>
+    <!-- Hand -->
+    <circle cx="47" cy="111" r="6" fill="#D4A574"/>
+    <!-- Legs (under desk) -->
+    <rect x="5" y="118" width="13" height="30" rx="3" fill="#334155"/>
+    <rect x="24" y="118" width="13" height="30" rx="3" fill="#334155"/>
+  </g>
+
+  <!-- Shelf with sensors/equipment (background right) -->
+  <g transform="translate(620, 100)">
+    <!-- Shelf unit -->
+    <rect x="0" y="0" width="120" height="250" rx="3" fill="#115E59" stroke="#134E4A" stroke-width="1"/>
+    <!-- Shelves -->
+    <rect x="5" y="60" width="110" height="3" fill="#134E4A"/>
+    <rect x="5" y="120" width="110" height="3" fill="#134E4A"/>
+    <rect x="5" y="180" width="110" height="3" fill="#134E4A"/>
+    <!-- Items on shelf 1 -->
+    <rect x="15" y="35" width="25" height="25" rx="3" fill="#334155"/>
+    <rect x="50" y="40" width="20" height="20" rx="2" fill="#334155"/>
+    <rect x="80" y="30" width="25" height="30" rx="3" fill="#334155"/>
+    <circle cx="27" cy="47" r="5" fill="#0D9488" opacity="0.4"/>
+    <!-- Items on shelf 2 -->
+    <rect x="12" y="95" width="30" height="25" rx="3" fill="#334155"/>
+    <rect x="55" y="100" width="22" height="20" rx="2" fill="#334155"/>
+    <rect x="85" y="93" width="25" height="27" rx="3" fill="#334155"/>
+    <!-- Items on shelf 3 -->
+    <rect x="10" y="150" width="35" height="30" rx="3" fill="#334155"/>
+    <rect x="55" y="155" width="28" height="25" rx="2" fill="#334155"/>
+    <rect x="90" y="153" width="22" height="27" rx="3" fill="#334155"/>
+    <!-- Some sensor indicators -->
+    <circle cx="25" cy="107" r="3" fill="#0D9488" opacity="0.5"/>
+    <circle cx="97" cy="106" r="3" fill="#F59E0B" opacity="0.4"/>
+  </g>
+
+  <!-- Whiteboard/notes on wall (background) -->
+  <g transform="translate(90, 80)">
+    <rect x="0" y="0" width="80" height="60" rx="2" fill="#F8FAFC" opacity="0.1"/>
+    <rect x="8" y="8" width="30" height="3" rx="1" fill="#CCFBF1" opacity="0.15"/>
+    <rect x="8" y="16" width="50" height="3" rx="1" fill="#CCFBF1" opacity="0.1"/>
+    <rect x="8" y="24" width="40" height="3" rx="1" fill="#CCFBF1" opacity="0.1"/>
+    <rect x="8" y="36" width="25" height="12" rx="1" fill="#0D9488" opacity="0.1"/>
+    <rect x="40" y="36" width="25" height="12" rx="1" fill="#5EEAD4" opacity="0.08"/>
+  </g>
+</svg>

@@ -1,26 +1,23 @@
-import { Factory, Headset, Users } from "lucide-react";
+import Image from "next/image";
 
 const teasers = [
   {
     title: "Индустриални решения",
     description:
       "Автоматизация за хранителна, фармацевтична и автомобилна индустрия.",
-    icon: Factory,
-    gradient: "from-slate-700 to-primary-800",
+    image: "/images/teasers/industrial-solutions.svg",
   },
   {
     title: "Техническа експертиза",
     description:
       "Нашият екип помага с избора и интеграцията на всеки продукт.",
-    icon: Headset,
-    gradient: "from-primary-700 to-emerald-800",
+    image: "/images/teasers/technical-expertise.svg",
   },
   {
     title: "Партньорство",
     description:
       "Дългосрочни отношения с клиенти в цяла България.",
-    icon: Users,
-    gradient: "from-slate-800 to-indigo-900",
+    image: "/images/teasers/partnership.svg",
   },
 ];
 
@@ -40,18 +37,14 @@ export function TeaserGrid() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {teasers.map((teaser) => (
             <div key={teaser.title} className="group">
-              <div
-                className={`aspect-video rounded-xl overflow-hidden bg-gradient-to-br ${teaser.gradient} flex items-center justify-center relative`}
-              >
-                {/* Subtle pattern overlay */}
-                <div className="absolute inset-0 opacity-10">
-                  <svg className="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
-                    <line x1="0" y1="100" x2="100" y2="0" stroke="white" strokeWidth="0.3" />
-                    <line x1="20" y1="100" x2="100" y2="20" stroke="white" strokeWidth="0.2" />
-                    <line x1="0" y1="80" x2="80" y2="0" stroke="white" strokeWidth="0.2" />
-                  </svg>
-                </div>
-                <teaser.icon className="w-16 h-16 text-white/30 group-hover:text-white/50 transition-colors duration-500" />
+              <div className="aspect-video rounded-xl overflow-hidden">
+                <Image
+                  src={teaser.image}
+                  alt={teaser.title}
+                  width={800}
+                  height={450}
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                />
               </div>
               <h3 className="font-semibold text-lg text-slate-900 mt-4 mb-1">
                 {teaser.title}
